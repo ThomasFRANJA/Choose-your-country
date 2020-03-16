@@ -1,4 +1,7 @@
 @font-face {
     font-family: "Campton-BoldDEMO";
-    src: url("./fonts/Campton-BoldDEMO.otf");
+    src: url("./fonts/Campton-BoldDEMO.otf") format('embedded-opentype');
+    font-stretch : normal;
+    font-weight : normal;
+    font-style : normal;  
 }

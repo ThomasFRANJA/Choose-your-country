@@ -4,7 +4,7 @@
   input(v-model="search" @click="onChange"  @keyup.up="onChangeKeyUp" @keyup.down="onChangeKeyDown" placeholder="Saisissez votre pays" label="Pays")
 
   ul.container-box-content(v-if="showModal")
-    li(v-for="item in countries" :key="item.name" @click="addCountrie(item.name)").container-box-content__list
+    li(v-model="countries" v-for="item in countries" :key="item.name" @click="addCountrie(item.name)").container-box-content__list
       img.container-box-content__img(:src="item.flag" alt="flag of this countrie")
       span.container-box-content__name {{ item.name }}
 </template>
@@ -13,28 +13,35 @@
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import '../assets/fonts.scss'
 
 Vue.use(VueAxios, axios)
 
   export default {
     name: 'Autocomplete',
 
-  data: () => ({
+  data: () => {
     // Initialized datas
+    return {
       countries: [],
       countriesName: [],
       search: '',
       isLoading: false,
       showModal: false,
-      counter: 0,
-  }),
+      // counter: 0,
+    }
+  },
 
   methods: {
     onChange() {
-      this.$emit("input", this.search);
-      this.showModal = true
-      // console.log('Votre texte est:', this.search)
-      console.log('Votre element est:', this.filterResults())
+      const input = this.$emit("input", this.search);
+      if(input) {
+        this.showModal = true
+      } else {
+        this.showModal = false
+      console.log('Votre texte est:', this.search)
+      }
+      // console.log('Votre element est:', this.filterResults())
       // console.log('keydown clicked', this.onChangeKeyDown())
       // console.log('data', this.countries)
     },
@@ -42,9 +49,9 @@ Vue.use(VueAxios, axios)
       // 
       this.countries.map(item => {
         this.countriesName = item.name
-        console.log(this.countriesName)
+        // console.log(this.countriesName)
       })
-      },
+    },
 
     addCountrie(item) {
       this.search = item,
@@ -87,13 +94,18 @@ Vue.use(VueAxios, axios)
   position: relative;
   height: 150px;
   margin-top: 50px;
+  font-family: "Lato";
+  label {
+    color: #94bbdc;
+    font-family: "Lato";
+    font-weight: 600;
+  }
   input {
     outline: none;
     font-size: 1rem;
     border-bottom: 2px solid;
     border-color: #94bbdc;
     width: 100%;
-    font-family: "Campton-BoldDEMO";
     position: relative;
     margin-top: 10px;
   }

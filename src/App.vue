@@ -1,22 +1,17 @@
 <template lang="pug">
   section.countries
-    <Autocomplete/>
+    <Autocomplete />
 
 
 </template>
 
 <script>
 import Autocomplete from './components/Autocomplete';
-
-
 export default {
   name: 'App',
 
   components: {
     Autocomplete,
-  },
-
-  data() {
   },
 };
 </script>
