@@ -1,4 +1,4 @@
-# vingt-cinq-test
+# Choose-your-country
 
 ## Project setup
 ```
